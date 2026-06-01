@@ -69,7 +69,7 @@ input, select, textarea { font-family: inherit; }
    LAYOUT UTILITIES
    ============================================================ */
 
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.container, .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
 .flex-center { display: flex; justify-content: space-between; align-items: center; }
 .flex-row { display: flex; align-items: center; gap: 12px; }
@@ -385,6 +385,22 @@ textarea.form-control { resize: vertical; min-height: 100px; line-height: 1.6; }
 }
 .card-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
 .card-subtitle { font-size: 14px; color: var(--text-secondary); margin-bottom: 14px; }
+
+.product-card { position: relative; }
+.product-card-list { display: flex; flex-direction: row; }
+.product-title {
+  font-size: 15px; line-height: 1.35; margin-bottom: 8px;
+  min-height: 40px; overflow: hidden;
+}
+.product-price { font-weight: 800; font-size: 18px; }
+.product-rating { font-size: 13px; color: var(--primary-color); font-weight: 700; }
+.product-actions { display: flex; gap: 8px; margin-top: 12px; }
+.product-discount {
+  position: absolute; top: 10px; left: 10px; z-index: 2;
+  background: var(--danger); color: white; padding: 4px 9px;
+  border-radius: var(--radius-sm); font-size: 12px; font-weight: 800;
+  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.28);
+}
 
 .card-featured { border: 2px solid var(--primary-color); }
 .card-flat { box-shadow: none; border: 1px solid var(--border-color); }
@@ -718,11 +734,15 @@ textarea.form-control { resize: vertical; min-height: 100px; line-height: 1.6; }
   content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0;
   background: var(--primary-color); transition: width var(--transition-base);
 }
-.nav-links a:hover::after { width: 100%; }
-.nav-links a:hover { color: var(--primary-color); }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
 .icon-btn { position: relative; font-size: 24px; background: none; color: var(--text-primary); padding: 8px; border-radius: 50%; }
 .icon-btn:hover { background: var(--primary-light); color: var(--primary-color); }
 .hamburger { display: none; font-size: 24px; background: none; color: var(--text-primary); }
+
+.toolbar-group { display: flex; align-items: center; gap: 5px; font-size: 14px; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; color: var(--text-secondary); }
+.footer-links a:hover { color: var(--primary-color); }
 
 /* ============================================================
    TABLES
@@ -905,9 +925,9 @@ textarea.form-control { resize: vertical; min-height: 100px; line-height: 1.6; }
 @media (max-width: 768px) {
   .hamburger { display: block; }
   .nav-links {
-    position: absolute; top: 100%; left: 0; width: 100%; background: var(--bg-primary);
+    position: absolute; top: calc(100% + 16px); left: 20px; right: 20px; width: auto; background: var(--bg-primary);
     flex-direction: column; padding: 20px; gap: 20px; box-shadow: var(--card-shadow-hover);
-    display: none; border-bottom: 1px solid var(--border-color);
+    display: none; border: 1px solid var(--border-color); border-radius: var(--radius-lg);
   }
   .nav-links.active { display: flex; }
   .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
@@ -923,6 +943,9 @@ textarea.form-control { resize: vertical; min-height: 100px; line-height: 1.6; }
   .toast { min-width: unset; max-width: 100%; }
   .pagination { flex-wrap: wrap; }
   .btn-lg { padding: 13px 24px; font-size: 15px; }
+  .product-card-list { flex-direction: column; }
+  .product-card-list a { width: 100% !important; }
+  .toolbar-group { width: 100%; flex-wrap: wrap; }
 }
 
 @media (max-width: 480px) {

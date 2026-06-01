@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
@@ -10,12 +11,18 @@ const Footer = () => {
         </div>
         <div>
           <h4>Quick Links</h4>
-          <p>About</p><p>Contact</p><p>FAQ</p>
+          <div className="footer-links">
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
+            <Link to="/products">Products</Link>
+          </div>
         </div>
         <div>
           <h4>Follow Us</h4>
           <div style={{display:'flex', gap:'15px', justifyContent:'center', marginTop:'10px', fontSize:'20px'}}>
-            <FaFacebook /><FaTwitter /><FaInstagram />
+            <a href="https://www.facebook.com" aria-label="Facebook"><FaFacebook /></a>
+            <a href="https://www.twitter.com" aria-label="Twitter"><FaTwitter /></a>
+            <a href="https://www.instagram.com" aria-label="Instagram"><FaInstagram /></a>
           </div>
         </div>
       </div>

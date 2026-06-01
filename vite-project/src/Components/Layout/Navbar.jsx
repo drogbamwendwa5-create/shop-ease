@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../../Context/AuthContext';
 import { useCart } from '../../Context/CartContext';
@@ -23,29 +23,29 @@ export default function Navbar() {
           ShopVibe
         </Link>
         
-        <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+        <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">
           {menuOpen ? <FiX /> : <FiMenu />}
         </button>
 
         <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
           {/* Main Navigation Links */}
-          <Link to="/" onClick={closeMenu}>Home</Link>
-          <Link to="/products" onClick={closeMenu}>Products</Link>
-          <Link to="/about" onClick={closeMenu}>About</Link>
-          <Link to="/contact" onClick={closeMenu}>Contact</Link>
+          <NavLink to="/" onClick={closeMenu}>Home</NavLink>
+          <NavLink to="/products" onClick={closeMenu}>Products</NavLink>
+          <NavLink to="/about" onClick={closeMenu}>About</NavLink>
+          <NavLink to="/contact" onClick={closeMenu}>Contact</NavLink>
           
           {/* Icon Actions */}
-          <Link to="/wishlist" className="icon-btn" onClick={closeMenu}>
+          <Link to="/wishlist" className="icon-btn" onClick={closeMenu} aria-label="Wishlist">
             <FiHeart /> 
-            <span className="badge">{wishlistItems.length}</span>
+            <span className="badge-counter">{wishlistItems.length}</span>
           </Link>
 
-          <Link to="/cart" className="icon-btn" onClick={closeMenu}>
+          <Link to="/cart" className="icon-btn" onClick={closeMenu} aria-label="Cart">
             <FiShoppingCart /> 
-            <span className="badge">{cartItems.length}</span>
+            <span className="badge-counter">{cartItems.length}</span>
           </Link>
 
-          <button onClick={toggleTheme} className="icon-btn">
+          <button onClick={toggleTheme} className="icon-btn" aria-label="Toggle theme">
             {theme === 'light' ? <FiMoon /> : <FiSun />}
           </button>
 

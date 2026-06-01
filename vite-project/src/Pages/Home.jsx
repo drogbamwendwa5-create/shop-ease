@@ -85,9 +85,9 @@ export default function Home() {
 
   // Helper to render product cards
   const ProductCard = ({ product }) => (
-    <div className="card" style={{ position: 'relative' }}>
+    <div className="card product-card">
       {product.discountPercentage > 5 && (
-        <span style={{ position: 'absolute', top: '10px', left: '10px', background: 'var(--danger)', color: 'white', padding: '3px 8px', borderRadius: '4px', fontSize: '12px', fontWeight: 'bold', zIndex: 2 }}>
+        <span className="product-discount">
           -{Math.round(product.discountPercentage)}%
         </span>
       )}
@@ -95,16 +95,16 @@ export default function Home() {
         <img src={product.thumbnail} alt={product.title} className="card-img" />
       </Link>
       <div className="card-body">
-        <Link to={`/products/${product.id}`}><h3 style={{ fontSize: '15px', marginBottom: '8px', height: '40px', overflow: 'hidden' }}>{product.title}</h3></Link>
+        <Link to={`/products/${product.id}`}><h3 className="product-title">{product.title}</h3></Link>
         <div className="flex-center">
-          <span style={{ fontWeight: 'bold', fontSize: '18px' }}>${product.price}</span>
-          <span style={{ fontSize: '13px', color: 'var(--primary-color)' }}>★ {product.rating}</span>
+          <span className="product-price">${product.price}</span>
+          <span className="product-rating">★ {product.rating}</span>
         </div>
-        <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
+        <div className="product-actions">
           <button onClick={() => addToCart(product)} className="btn btn-primary btn-sm" style={{ flex: 1 }}>
             <FiShoppingCart style={{ marginRight: '5px' }} /> Add
           </button>
-          <button onClick={() => toggleWishlist(product)} className="btn btn-outline btn-sm">
+          <button onClick={() => toggleWishlist(product)} className="btn btn-outline btn-sm" aria-label={`Save ${product.title}`}>
             <FiHeart style={{ color: wishlistItems.find(i => i.id === product.id) ? 'var(--danger)' : 'inherit' }} />
           </button>
         </div>
@@ -115,18 +115,19 @@ export default function Home() {
   return (
     <div>
       {/* 1. HERO CAROUSEL SECTION */}
-      <section style={{ ...styles.heroContainer, background: slides[currentSlide].bg }}>
-        <button onClick={() => setCurrentSlide((currentSlide - 1 + slides.length) % slides.length)} style={styles.sliderBtnLeft}><FiChevronLeft /></button>
+      <section style={{ ...styles.heroContainer, backgroundImage: `linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(37, 99, 235, 0.58)), url(${featuredProducts[currentSlide]?.thumbnail || featuredProducts[0]?.thumbnail})` }}>
+        <button onClick={() => setCurrentSlide((currentSlide - 1 + slides.length) % slides.length)} style={styles.sliderBtnLeft} aria-label="Previous slide"><FiChevronLeft /></button>
         <div className="container" style={{ textAlign: 'center', zIndex: 2 }}>
+          <span className="badge badge-solid-primary" style={{ marginBottom: '18px' }}>Curated Daily Deals</span>
           <h1 style={{ fontSize: '3.5rem', fontWeight: '800', marginBottom: '15px', textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>{slides[currentSlide].title}</h1>
           <p style={{ fontSize: '1.3rem', marginBottom: '30px', color: '#e0e0e0' }}>{slides[currentSlide].subtitle}</p>
           <Link to="/products" className="btn btn-primary" style={{ padding: '15px 40px', fontSize: '18px', borderRadius: '30px' }}>{slides[currentSlide].btn}</Link>
         </div>
-        <button onClick={() => setCurrentSlide((currentSlide + 1) % slides.length)} style={styles.sliderBtnRight}><FiChevronRight /></button>
+        <button onClick={() => setCurrentSlide((currentSlide + 1) % slides.length)} style={styles.sliderBtnRight} aria-label="Next slide"><FiChevronRight /></button>
         {/* Dots Indicator */}
         <div style={{ position: 'absolute', bottom: '20px', display: 'flex', gap: '10px' }}>
           {slides.map((_, i) => (
-            <div key={i} onClick={() => setCurrentSlide(i)} style={{ width: '12px', height: '12px', borderRadius: '50%', background: currentSlide === i ? 'white' : 'rgba(255,255,255,0.5)', cursor: 'pointer', transition: '0.3s' }}></div>
+            <button key={i} onClick={() => setCurrentSlide(i)} aria-label={`Show slide ${i + 1}`} style={{ width: '12px', height: '12px', borderRadius: '50%', background: currentSlide === i ? 'white' : 'rgba(255,255,255,0.5)', cursor: 'pointer', transition: '0.3s', padding: 0 }}></button>
           ))}
         </div>
       </section>
@@ -242,6 +243,8 @@ const styles = {
     justifyContent: 'center',
     color: 'white',
     overflow: 'hidden',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
     transition: 'background 1s ease-in-out'
   },
   sliderBtnLeft: { position: 'absolute', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.2)', color: 'white', fontSize: '24px', padding: '15px', borderRadius: '50%', backdropFilter: 'blur(5px)', zIndex: 10, left: '20px' },

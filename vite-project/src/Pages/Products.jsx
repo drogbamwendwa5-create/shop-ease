@@ -93,7 +93,7 @@ export default function Products() {
           <option value="newest">Newest First</option>
         </select>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '14px' }}>
+        <div className="toolbar-group">
           <label>Min Rating:</label>
           <select value={minRating} onChange={e => { setMinRating(Number(e.target.value)); setCurrentPage(1); }} className="form-control" style={{ maxWidth: '80px', padding: '5px' }}>
             <option value={0}>Any</option>
@@ -102,7 +102,7 @@ export default function Products() {
           </select>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '14px' }}>
+        <div className="toolbar-group">
           <label>Price:</label>
           <input type="number" placeholder="Min" value={priceRange[0] === 0 ? '' : priceRange[0]} onChange={e => { setPriceRange([Number(e.target.value) || 0, priceRange[1]]); setCurrentPage(1); }} className="form-control" style={{ width: '70px', padding: '5px' }} />
           <span>-</span>
@@ -110,8 +110,8 @@ export default function Products() {
         </div>
 
         <div style={{ marginLeft: 'auto', display: 'flex', gap: '5px' }}>
-          <button onClick={() => setView('grid')} className="btn btn-sm" style={{ background: view === 'grid' ? 'var(--primary-color)' : 'transparent', color: view === 'grid' ? 'white' : 'var(--text-primary)' }}><FiGrid /></button>
-          <button onClick={() => setView('list')} className="btn btn-sm" style={{ background: view === 'list' ? 'var(--primary-color)' : 'transparent', color: view === 'list' ? 'white' : 'var(--text-primary)' }}><FiList /></button>
+          <button onClick={() => setView('grid')} className="btn btn-sm" aria-label="Grid view" style={{ background: view === 'grid' ? 'var(--primary-color)' : 'transparent', color: view === 'grid' ? 'white' : 'var(--text-primary)' }}><FiGrid /></button>
+          <button onClick={() => setView('list')} className="btn btn-sm" aria-label="List view" style={{ background: view === 'list' ? 'var(--primary-color)' : 'transparent', color: view === 'list' ? 'white' : 'var(--text-primary)' }}><FiList /></button>
         </div>
       </div>
 
@@ -121,9 +121,9 @@ export default function Products() {
       ) : (
         <div className={view === 'grid' ? 'product-grid' : ''} style={view === 'list' ? { display: 'flex', flexDirection: 'column', gap: '15px' } : {}}>
           {paginatedProducts.map(p => (
-            <div key={p.id} className="card" style={view === 'list' ? { display: 'flex', flexDirection: 'row' } : { position: 'relative' }}>
+            <div key={p.id} className={`card product-card ${view === 'list' ? 'product-card-list' : ''}`}>
               {p.discountPercentage > 5 && (
-                <span style={{ position: 'absolute', top: '10px', left: '10px', background: 'var(--danger)', color: 'white', padding: '3px 8px', borderRadius: '4px', fontSize: '12px', fontWeight: 'bold', zIndex: 2 }}>
+                <span className="product-discount">
                   -{Math.round(p.discountPercentage)}%
                 </span>
               )}
@@ -133,12 +133,12 @@ export default function Products() {
               <div className="card-body" style={{ width: '100%' }}>
                 <div className="flex-center">
                   <Link to={`/products/${p.id}`}><h3 style={{ fontSize: '16px', marginRight: '10px' }}>{p.title}</h3></Link>
-                  <button onClick={() => toggleWishlist(p)} style={{ background: 'none', color: wishlistItems.find(i => i.id === p.id) ? 'var(--danger)' : 'var(--text-secondary)', fontSize: '20px' }}><FiHeart /></button>
+                  <button onClick={() => toggleWishlist(p)} aria-label={`Save ${p.title}`} style={{ background: 'none', color: wishlistItems.find(i => i.id === p.id) ? 'var(--danger)' : 'var(--text-secondary)', fontSize: '20px' }}><FiHeart /></button>
                 </div>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '14px', margin: '5px 0' }}>{p.category} {p.brand ? `• ${p.brand}` : ''}</p>
                 <div className="flex-center" style={{ marginTop: '10px' }}>
-                  <span style={{ fontWeight: 'bold', fontSize: '18px' }}>${p.price}</span>
-                  <span style={{ fontSize: '14px', color: 'var(--primary-color)' }}>★ {p.rating}</span>
+                  <span className="product-price">${p.price}</span>
+                  <span className="product-rating">★ {p.rating}</span>
                   <span style={{ fontSize: '12px', color: p.stock > 0 ? 'var(--success)' : 'var(--danger)' }}>{p.stock > 0 ? 'In Stock' : 'Out of Stock'}</span>
                 </div>
                 <button onClick={() => addToCart(p)} className="btn btn-primary btn-sm" style={{ marginTop: '10px' }} disabled={p.stock === 0}>Add to Cart</button>
