@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { fetchProductById, fetchProductsByCategory } from '../services/api';
-import { useCart } from '../context/CartContext';
-import { useWishlist } from '../context/WishlistContext';
-import { useAuth } from '../context/AuthContext';
+import { fetchProductById, fetchProductsByCategory } from '../Services/api';
+import { useCart } from '../Context/CartContext';
+import { useWishlist } from '../Context/WishlistContext';
+import { useAuth } from '../Context/AuthContext';
 import { FiHeart, FiShoppingCart, FiMinus, FiPlus, FiTrash2, FiEdit2 } from 'react-icons/fi';
 import { toast } from 'react-toastify';
-import Loading from '../components/UI/Loading';
+import Loading from '../Components/UI/Loading';
 
 export default function ProductDetails() {
   const { id } = useParams();

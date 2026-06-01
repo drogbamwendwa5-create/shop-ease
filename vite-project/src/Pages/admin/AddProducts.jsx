@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchCategories } from '../../services/api';
+import { fetchCategories } from '../../Services/api';
 import { toast } from 'react-toastify';
 
 export default function AddProduct() {

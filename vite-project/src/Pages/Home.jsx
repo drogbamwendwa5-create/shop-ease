@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchProducts, fetchCategories } from '../services/api';
-import { useCart } from '../context/CartContext';
-import { useWishlist } from '../context/WishlistContext';
+import { fetchProducts, fetchCategories } from '../Services/api';
+import { useCart } from '../Context/CartContext';
+import { useWishlist } from '../Context/WishlistContext';
 import { FiHeart, FiShoppingCart, FiClock, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { toast } from 'react-toastify';
-import Loading from '../components/UI/Loading';
+import Loading from '../Components/UI/Loading';
 
 export default function Home() {
   const [categories, setCategories] = useState([]);

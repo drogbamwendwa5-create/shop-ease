@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../Context/CartContext';
 import { toast } from 'react-toastify';
-import Loading from '../components/UI/Loading';
+import Loading from '../Components/UI/Loading';
 import { FiCreditCard, FiSmartphone, FiTruck, FiDollarSign } from 'react-icons/fi';
 
 export default function Checkout() {

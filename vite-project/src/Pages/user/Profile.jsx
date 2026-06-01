@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../Context/AuthContext';
 import { toast } from 'react-toastify';
 import { FiCamera } from 'react-icons/fi';
 

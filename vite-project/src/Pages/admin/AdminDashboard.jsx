@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../Context/AuthContext';
 import { FiUsers, FiShoppingBag, FiDollarSign, FiPlusCircle } from 'react-icons/fi';
 
 export default function AdminDashboard() {

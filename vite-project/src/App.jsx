@@ -3,32 +3,32 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Contexts
-import { ThemeProvider } from './context/ThemeContext';
-import { AuthProvider } from './context/AuthContext';
-import { CartProvider } from './context/CartContext';
-import { WishlistProvider } from './context/WishlistContext';
+import { ThemeProvider } from './Context/ThemeContext';
+import { AuthProvider } from './Context/AuthContext';
+import { CartProvider } from './Context/CartContext';
+import { WishlistProvider } from './Context/WishlistContext';
 
 // Layout
-import Navbar from './components/Layout/Navbar';
-import Footer from './components/Layout/Footer';
-import ProtectedRoute from './components/UI/ProtectedRoute';
+import Navbar from './Components/Layout/Navbar';
+import Footer from './Components/Layout/Footer';
+import ProtectedRoute from './Components/UI/ProtectedRoute';
 
 // Pages
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Products from './pages/Products';
-import ProductDetails from './pages/ProductDetails';
-import Cart from './pages/Cart';
-import Wishlist from './pages/Wishlist';
-import Checkout from './pages/Checkout';
-import Receipt from './pages/Receipt';
-import UserDashboard from './pages/user/UserDashboard';
-import Profile from './pages/user/Profile';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import NotFound from './pages/NotFound';
+import Home from './Pages/Home';
+import Login from './Pages/Login';
+import Signup from './Pages/Signup';
+import Products from './Pages/Products';
+import ProductDetails from './Pages/ProductDetails';
+import Cart from './Pages/Cart';
+import Wishlist from './Pages/Wishlist';
+import Checkout from './Pages/Checkout';
+import Receipt from './Pages/Receipt';
+import UserDashboard from './Pages/user/UserDashboard';
+import Profile from './Pages/user/Profile';
+import AdminDashboard from './Pages/admin/AdminDashboard';
+import About from './Pages/About';
+import Contact from './Pages/Contact';
+import NotFound from './Pages/NotFound';
 
 // Global CSS
 import './styles/global.css';

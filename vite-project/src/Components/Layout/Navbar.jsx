@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { useAuth } from '../../context/AuthContext';
-import { useCart } from '../../context/CartContext';
-import { useWishlist } from '../../context/WishlistContext';
-import { useTheme } from '../../context/ThemeContext';
+import { useAuth } from '../../Context/AuthContext';
+import { useCart } from '../../Context/CartContext';
+import { useWishlist } from '../../Context/WishlistContext';
+import { useTheme } from '../../Context/ThemeContext';
 import { FiSun, FiMoon, FiLogOut, FiUser, FiShoppingCart, FiHeart, FiMenu, FiX } from 'react-icons/fi';
 
 export default function Navbar() {
